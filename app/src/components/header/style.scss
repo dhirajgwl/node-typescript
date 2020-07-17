@@ -1,0 +1,11 @@
+.Header{
+    display:flex;
+    padding:10px 0;
+    background-color:gray;
+    margin-bottom:10px;
+    .Header--text{
+        color: white;
+        font-size: larger;
+        padding: 10px;
+    }
+}

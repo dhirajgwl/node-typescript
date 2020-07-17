@@ -8,11 +8,9 @@ const app:express.Express = express();
 app.use(morgan('tiny'));
 app.use(bodyParser());
 
-app.use(express.static('public'));
-
-
+app.use(express.static('dist'));
 app.use(router);
 
-const listener = app.listen(process.env.PORT || 3000, function () {
-    console.log('Your app is listening on port ' );
+app.listen(process.env.PORT || 3000, function () {
+    console.log('Your app is listening on port ' + process.env.PORT);
 });
