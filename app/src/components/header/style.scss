@@ -1,10 +1,12 @@
+@import '../../color.scss';
+
 .Header{
     display:flex;
     padding:10px 0;
-    background-color:gray;
+    background-color:$red;
     margin-bottom:10px;
     .Header--text{
-        color: white;
+        color: $white;
         font-size: larger;
         padding: 10px;
     }

@@ -1,3 +1,5 @@
+@import '../../color.scss';
+
 .TextArea{
     display: flex;
     flex-direction: row;
@@ -13,7 +15,7 @@
     height: 200px; 
     width: 75%; 
     &:focus{
-        outline-color:#fe0002
+        outline-color:$red;
     }  
 }
 .TextArea--label{    

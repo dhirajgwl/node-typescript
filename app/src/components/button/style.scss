@@ -1,14 +1,15 @@
+@import '../../color.scss';
 .Button{
     padding: 15px 25px;
-    background-color: #fe0002;
+    background-color:$red;
     float: right;    
-    color: #fff;
+    color: $white;
     border-radius: 0;
     cursor: pointer;
     border: 1px solid;
     
     &:hover{
-        color: #fe0002;
-        background-color: #fff;
+        color:$red;
+        background-color :$white;
     }
 }

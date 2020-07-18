@@ -1,3 +1,5 @@
+@import '../../color.scss';
+
 .TextInput{
     display: flex;
     flex-direction: row;
@@ -15,7 +17,7 @@
     padding: 8px;   
     box-sizing: content-box;
     &:focus{
-        outline-color:#fe0002
+        outline-color:$red;
     } 
 }
 .TextInput--label{    
