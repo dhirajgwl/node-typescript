@@ -1,23 +1,23 @@
 import sendEmail from "./sendEmail";
-import {UserDetails} from '../common/interface';
+import {UserProfile} from '../common/interface';
 
-const emailList:UserDetails[]= [];
-let emailInterval:any;
+const emailList:UserProfile[]= [];
+let emailInterval:number;
 const delay:number = 2*1000;
 
 const emailScheduler =  async () =>{
-    const email:UserDetails = emailList.pop() as UserDetails;
+    const email:UserProfile = emailList.pop() as UserProfile;
     if(!emailList.length) {
         clearInterval(emailInterval);
     }
     sendEmail(email);
 }
 
-const addMailInQueue = (email:UserDetails) =>{
+const addMailInQueue = (userProfile:UserProfile):void =>{
     if(!emailList.length){
         emailInterval = setInterval(emailScheduler,delay);
     }
-    emailList.push(email);
+    emailList.push(userProfile);
 }
 
 export default addMailInQueue;

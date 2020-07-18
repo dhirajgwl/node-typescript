@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer';
-import { UserDetails } from "../common/interface"
+import { UserProfile } from "../common/interface"
 import addMailInQueue from './emailScheduler';
 
 
-const sendEmail = async (userDetails:UserDetails) =>{
+const sendEmail = async (userDetails:UserProfile):Promise<void> =>{
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,        

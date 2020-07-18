@@ -39,8 +39,9 @@ const Page = () =>{
       sendWish();
    }
    const sendWish = async() =>{
-      const res = await axios.post('/send-wish',{userName,wish});
-      const data = res.data.result;
+      const res = await axios.post('/send-wish',{userName,wish});      
+      const data = res.data;
+      
       if(data.error) {
          return setState({...initialState,open:true,success:false,message:getMessage(data.error)});
       }
