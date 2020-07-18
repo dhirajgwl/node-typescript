@@ -7,8 +7,7 @@ const wishController = async (req:Request, res:Response) =>{
     const userName = req.body.userName; 
     const wish = req.body.wish; 
     const result = await validateUser(userName, wish);    
-    res.send(result);
-    
+    res.send(result);    
 }
 
 const validateUser = async(userName:string, wish:string, maxAge:number=10) =>{

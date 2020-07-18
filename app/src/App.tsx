@@ -7,12 +7,9 @@ function App() {
     <Fragment>
       <Header title="Santa Application"></Header>
         <div className="container">
-          <div className="row">
-            <Page></Page>
-          </div>
+          <Page></Page>         
         </div>
-    </Fragment>
-    
+    </Fragment>    
   );
 }
 

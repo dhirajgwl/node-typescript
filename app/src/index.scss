@@ -1,7 +1,12 @@
-@import '../../node_modules/bootstrap/scss/bootstrap-grid.scss';
+
 body{
     padding: 0px;
     margin: 0px;
     background-image: url('./cap.jpg');
     background-repeat: repeat;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

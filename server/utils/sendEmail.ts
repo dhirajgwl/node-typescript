@@ -19,14 +19,10 @@ const sendEmail = async (userDetails:UserDetails) =>{
     html: `<b>Hello Santa</b><br><p>${userDetails.username} wants these gifts ${userDetails.wish}.<br> Please Deliver to below address<br>Address: ${userDetails.address}</p>` ,
   }
 
-  return mailOptions;
-
-     // When connect to mail server 
-  /*transporter.sendMail(mailOptions, (err,info)=>{
+  transporter.sendMail(mailOptions, (err,info)=>{   
     if(err) return addMailInQueue(userDetails);
     return info;
-  })*/
+  })
 }
 
-
-export default sendEmail
+export default sendEmail;

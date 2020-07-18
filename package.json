@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --watch --mode development",
+    "predev": "npm run build",
     "dev": "ts-node -r dotenv/config server/server.ts",
-    "build": "webpack"
+    "prestart": "webpack --mode production",
+    "start" : "ts-node -r dotenv/config server/server.ts"    
   },
   "keywords": [],
   "author": "",

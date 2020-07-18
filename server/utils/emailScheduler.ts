@@ -10,8 +10,7 @@ const emailScheduler =  async () =>{
     if(!emailList.length) {
         clearInterval(emailInterval);
     }
-    const res = await sendEmail(email);
-    return res;
+    sendEmail(email);
 }
 
 const addMailInQueue = (email:UserDetails) =>{
