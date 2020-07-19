@@ -14,6 +14,7 @@ export type InitialState = {
   userName: string;
   wish: string;
   message: string;
+  loading: boolean;
 };
 const initialState = {
   success: false,
@@ -21,10 +22,11 @@ const initialState = {
   userName: '',
   wish: '',
   message: '',
+  loading: false,
 };
 
 const Page = () => {
-  const [{ success, open, userName, wish, message }, setState] = useState<InitialState>(initialState);
+  const [{ success, open, loading, userName, wish, message }, setState] = useState<InitialState>(initialState);
 
   const onFormSubmit = (evt: React.MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
@@ -49,13 +51,20 @@ const Page = () => {
     sendWish();
   };
   const sendWish = async () => {
-    const res = await axios.post('/send-wish', { userName:userName.trim(), wish:wish.trim() });
+    setState({ ...initialState, loading: true, open: true, success: false, message: getMessage(Error.SYSTEM_ERROR) });
+    const res = await axios.post('/send-wish', { userName: userName.trim(), wish: wish.trim() });
+    console.log(res);
     const data = res.data;
-
     if (data.error) {
-      return setState({ ...initialState, open: true, success: false, message: getMessage(data.error) });
+      return setState({ ...initialState, loading: false, open: true, success: false, message: getMessage(data.error) });
     }
-    return setState({ ...initialState, open: true, success: true, message: 'Hurry! Your wish send to Santa' });
+    return setState({
+      ...initialState,
+      loading: false,
+      open: true,
+      success: true,
+      message: 'Hurry! Your wish send to Santa',
+    });
   };
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { value, name } = evt.target;
@@ -74,6 +83,7 @@ const Page = () => {
         </form>
       </Card>
       <ModalWindow
+        loading={loading}
         open={open}
         success={success}
         handlePopup={() => {

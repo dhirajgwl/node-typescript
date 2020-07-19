@@ -40,6 +40,12 @@
             }
         }
     }
+    .loading{
+        padding: 35px;
+        background-image:url('./126.gif') ;
+        background-repeat: no-repeat;
+        position: absolute;
+    }
 }
 .Modal--open{
     display: flex;

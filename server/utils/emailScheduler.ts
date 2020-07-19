@@ -3,14 +3,12 @@ import { UserProfile } from '../common/interface';
 
 const emailList: UserProfile[] = [];
 let emailInterval: number;
-const delay: number = 2 * 1000;
+const delay: number = 15 * 1000;
 
-const emailScheduler = async () => {
-  const email: UserProfile = emailList.pop() as UserProfile;
-  if (!emailList.length) {
-    clearInterval(emailInterval);
-  }
-  sendEmail(email);
+const emailScheduler = () => {
+  sendEmail(emailList);
+  emailList.length = 0;
+  clearInterval(emailInterval);
 };
 
 const addMailInQueue = (userProfile: UserProfile): void => {

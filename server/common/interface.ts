@@ -11,13 +11,13 @@ export interface UserProfile {
 }
 
 export interface Response {
-  data: [];
-  status: number;
+  data?: Object[];
+  status: number | string;
   error?: string;
 }
 export interface UserResponse {
   data?: User;
-  status: number;
+  status: number | string;
   error?: string;
 }
 export interface UserProfileResponse {

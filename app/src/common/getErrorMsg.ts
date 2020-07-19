@@ -20,7 +20,7 @@ export const getMessage = (errorStr: string) => {
       break;
     }
     case Error.BIRTHDAY_INVALID: {
-      errorMessage = 'Your birthday is incorrect in the system.';
+      errorMessage = 'Your date of birth is incorrect in the system.';
       break;
     }
     case Error.OLD_USER: {

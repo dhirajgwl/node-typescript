@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment } from 'react';
 import './style.scss';
 import Button from '../button';
 
@@ -7,22 +7,31 @@ export type ModalWindowProps = {
   children: React.ReactNode;
   success?: boolean;
   open: boolean;
+  loading: boolean;
   handlePopup: () => void;
 };
 
 const ModalWindow = (props: ModalWindowProps) => {
   let modalClass = 'Modal';
+  let headingText = 'Success';
   if (props.open) modalClass += ' Modal--open';
 
   let panelHeader = 'Panel--header';
-  if (props.success) panelHeader += ' Panel--header--success';
-  else panelHeader += ' Panel--header--error';
+  if (props.success) {
+    panelHeader += ' Panel--header--success';
+    headingText = 'Success';
+  } else {
+    panelHeader += ' Panel--header--error';
+    headingText = 'Error';
+  }
 
-  return (
-    <div className={modalClass}>
-      <div className="Modal--bg"></div>
+  const modalContent = () => {
+    if (props.loading) {
+      return <div className="loading"></div>;
+    }
+    return (
       <div className="Modal--panel">
-        <div className={panelHeader}> HeadIng</div>
+        <div className={panelHeader}>{headingText}</div>
         <div className="Panel--body">
           <div className="message">{props.children}</div>
           <div className="btn-container">
@@ -30,6 +39,13 @@ const ModalWindow = (props: ModalWindowProps) => {
           </div>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div className={modalClass}>
+      <div className="Modal--bg"></div>
+      {modalContent()}
     </div>
   );
 };
