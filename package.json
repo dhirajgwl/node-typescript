@@ -9,7 +9,7 @@
     "dev": "ts-node -r dotenv/config server/server.ts",
     "prestart": "webpack --mode production",
     "start": "ts-node -r dotenv/config server/server.ts",
-    "lint": "eslint --ext tsx,ts ./app/src ./server/  --fix "
+    "lint": "eslint --ext tsx,ts ./santa-app/src ./server/  --fix "
   },
   "keywords": [],
   "author": "",

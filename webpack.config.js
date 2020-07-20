@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports ={
-    entry:"./app/src/index.tsx",    
+    entry:"./santa-app/src/index.tsx",    
     devtool: "source-map",    
     resolve: {
         extensions: [".ts", ".tsx",".js",".jsx",".json"]
@@ -34,7 +34,7 @@ module.exports ={
     },
     plugins: [new HtmlWebpackPlugin(
         {
-            template:"./app/public/index.html",
+            template:"./santa-app/public/index.html",
             title:"Santa App"
         }
     )],
