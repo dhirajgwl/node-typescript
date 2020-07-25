@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import {CSSTransition} from "react-transition-group";
 import './style.scss';
 import Button from '../button';
 
@@ -45,7 +46,9 @@ const ModalWindow = (props: ModalWindowProps) => {
   return (
     <div className={modalClass}>
       <div className="Modal--bg"></div>
-      {modalContent()}
+      <CSSTransition in={props.open} timeout={200} classNames="my-node">
+        {modalContent()}
+      </CSSTransition>      
     </div>
   );
 };
