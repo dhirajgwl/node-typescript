@@ -46,7 +46,7 @@ const ModalWindow = (props: ModalWindowProps) => {
   return (
     <div className={modalClass}>
       <div className="Modal--bg"></div>
-      <CSSTransition in={props.open} timeout={200} classNames="my-node">
+      <CSSTransition in={props.open} timeout={500} classNames="Modal-popup" >
         {modalContent()}
       </CSSTransition>      
     </div>

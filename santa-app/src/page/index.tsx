@@ -52,8 +52,7 @@ const Page = () => {
   };
   const sendWish = async () => {
     setState({ ...initialState, loading: true, open: true, success: false, message: getMessage(Error.SYSTEM_ERROR) });
-    const res = await axios.post('/send-wish', { userName: userName.trim(), wish: wish.trim() });
-    console.log(res);
+    const res = await axios.post('/send-wish', { userName: userName.trim(), wish: wish.trim() });    
     const data = res.data;
     if (data.error) {
       return setState({ ...initialState, loading: false, open: true, success: false, message: getMessage(data.error) });
