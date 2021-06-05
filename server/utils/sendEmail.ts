@@ -19,7 +19,8 @@ const sendEmail = async (emailList: Array<UserProfile>): Promise<void> => {
       html: `<b>Hello Santa</b><br><p>${userDetails.username} wants these gifts ${userDetails.wish}.<br> Please Deliver to below address<br>Address: ${userDetails.address}</p>`,
     };
     transporter.sendMail(mailOptions, (err, info) => {
-      if (err) return addMailInQueue(userDetails);
+      if (err) {return addMailInQueue(userDetails);}
+
       return info;
     });
   });

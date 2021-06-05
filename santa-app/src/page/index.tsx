@@ -1,103 +1,82 @@
-import React, { useState, Fragment } from 'react';
-import axios from 'axios';
-import ModalWindow from '../components/modalWindow';
-import { getMessage, Error } from '../common/getErrorMsg';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendMessageAction, clearState } from '../stores/slices/sendMessage';
+import { CircularProgress, Modal, Button, Grid, Typography } from '@material-ui/core';
 import TextArea from '../components/textArea';
 import TextInput from '../components/textInput';
-import Button from '../components/button';
 import Card from '../components/Card';
 import './style.scss';
+import { RootState } from '../stores/store';
+import Panel from '../components/panel';
 
 export type InitialState = {
-  success: boolean;
-  open: boolean;
   userName: string;
   wish: string;
-  message: string;
-  loading: boolean;
 };
 const initialState = {
-  success: false,
-  open: false,
   userName: '',
   wish: '',
-  message: '',
-  loading: false,
 };
 
 const Page = () => {
-  const [{ success, open, loading, userName, wish, message }, setState] = useState<InitialState>(initialState);
-
-  const onFormSubmit = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    evt.preventDefault();
-    if (!userName.trim()) {
-      return setState((prevState) => ({
-        ...prevState,
-        wish,
-        open: true,
-        success: false,
-        message: getMessage(Error.USER_EMPTY),
-      }));
-    }
-    if (!wish.trim()) {
-      return setState({
-        ...initialState,
-        userName,
-        open: true,
-        success: false,
-        message: getMessage(Error.WISH_EMPTY),
-      });
-    }
-    sendWish();
-  };
-  const sendWish = async () => {
-    setState({ ...initialState, loading: true, open: true, success: false, message: getMessage(Error.SYSTEM_ERROR) });
-    const res = await axios.post('/send-wish', { userName: userName.trim(), wish: wish.trim() });    
-    const data = res.data;
-    if (data.error) {
-      return setState({ ...initialState, loading: false, open: true, success: false, message: getMessage(data.error) });
-    }
-    return setState({
-      ...initialState,
-      loading: false,
-      open: true,
-      success: true,
-      message: 'Hurry! Your wish send to Santa',
-    });
-  };
+  const [{ userName, wish }, setState] = useState<InitialState>(initialState);
+  const { message, errorMessage, loading } = useSelector((state: RootState) => state.sendMessageReducer);
+  const dispatch = useDispatch();
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { value, name } = evt.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleSubmit = (evt: React.FormEvent) => {
+    evt.preventDefault();
+    dispatch(sendMessageAction({ userName, wish }));
+  };
+
   return (
-    <Fragment>
-      <Card>
-        <h3>A letter to Santa</h3>
-        <p>Ho ho ho, what you want for christma?</p>
-        <form>
-          <TextInput name="userName" labelText="User Name:" value={userName} onChange={onChangeHandler}></TextInput>
-          <TextArea name="wish" labelText="Wish:" value={wish} onChange={onChangeHandler}></TextArea>
-          <Button text="Send" onClick={onFormSubmit}></Button>
-        </form>
-      </Card>
-      <ModalWindow
-        loading={loading}
-        open={open}
-        success={success}
-        handlePopup={() => {
-          if (Error.USER_EMPTY) {
-            return setState((prevState) => ({ ...prevState, open: false, success: false, message: '' }));
-          }
-          if (Error.WISH_EMPTY) {
-            return setState((prevState) => ({ ...prevState, open: false, success: false, message: '' }));
-          }
-          setState({ ...initialState });
-        }}
-      >
-        <p>{message}</p>
-      </ModalWindow>
-    </Fragment>
+    <Grid container>
+      <Grid item xs={12}>
+        <Grid container justify="center">
+          <Card>
+            <Typography variant="h6" gutterBottom>
+              A letter to Santa
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              Ho ho ho, what you want for christma?
+            </Typography>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+              <TextInput name="userName" labelText="User Name:" value={userName} onChange={onChangeHandler}></TextInput>
+              <TextArea name="wish" labelText="Wish:" value={wish} onChange={onChangeHandler}></TextArea>
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                className="align-right"
+                disabled={!userName.trim() || !wish.trim()}
+              >
+                Send Wish
+              </Button>
+            </form>
+          </Card>
+          <Panel
+            open={!!errorMessage || !!message}
+            message={message || errorMessage}
+            type={message ? 'success' : 'error'}
+            handlePopup={() => {
+              setState({ userName: '', wish: '' });
+              dispatch(clearState());
+            }}
+          ></Panel>
+          <Modal
+            open={loading}
+            className="align-center"
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <CircularProgress color="secondary" />
+          </Modal>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

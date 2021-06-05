@@ -11,17 +11,11 @@ export interface UserProfile {
 }
 
 export interface Response {
-  data?: Object[];
-  status: number | string;
-  error?: string;
+  data?: Record<string, string>;
 }
 export interface UserResponse {
   data?: User;
-  status: number | string;
-  error?: string;
 }
 export interface UserProfileResponse {
   data?: UserProfile;
-  status: number | string;
-  error?: string;
 }
