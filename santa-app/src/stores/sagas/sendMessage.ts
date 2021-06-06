@@ -12,6 +12,6 @@ function* sendMessage({ payload }: any) {
   }
 }
 
-export function* sagas() {
+export function* sagas(): IterableIterator<any> {
   yield takeLatest(sendMessageAction, sendMessage);
 }

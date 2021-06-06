@@ -11,10 +11,10 @@ export type PanelProps = {
   handlePopup: () => void;
 };
 
-const Panel = (props: PanelProps) => {
+const Panel: React.FC<PanelProps> = (props: PanelProps) => {
   const panelHeader = `Panel--header Panel--header--${props.type}`;
 
-  return (
+  return props.open ? (
     <Modal
       open={props.open}
       className="align-center"
@@ -33,6 +33,8 @@ const Panel = (props: PanelProps) => {
         </div>
       </div>
     </Modal>
+  ) : (
+    <></>
   );
 };
 

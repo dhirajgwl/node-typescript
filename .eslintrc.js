@@ -21,6 +21,5 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/prefer-interface': 'off',
     'no-console': 'off',
-    curly: 2,
   },
 };

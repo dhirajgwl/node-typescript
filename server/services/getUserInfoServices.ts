@@ -7,10 +7,14 @@ const getUserInfoServices = async (userName: string): Promise<UserResponse> => {
   const response: Response = await get(url).catch((err) => {
     throw err;
   });
-  const userInfoList: User[] = response.data as unknown as Array<any>;
+  const userInfoList: User[] = response.data as unknown as Array<User>;
   const userInfo: User = userInfoList.find((user: User) => user.username === userName) as User;
-  if (!userInfo) throw new Error(ErrorType.USER_UNREGISTERED);
-  return { data: userInfo };
+  if (!userInfo) {
+    throw new Error(ErrorType.USER_UNREGISTERED);
+  }
+  return {
+    data: userInfo,
+  };
 };
 
 export default getUserInfoServices;

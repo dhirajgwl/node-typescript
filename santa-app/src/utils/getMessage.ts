@@ -9,7 +9,7 @@ export enum MessageType {
   WISH_SEND = 'WISH_SEND',
 }
 
-export const getMessage = (type: string) => {
+export const getMessage: any = (type: string) => {
   let message = '';
   switch (type) {
     case MessageType.USER_EMPTY: {

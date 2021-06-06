@@ -6,7 +6,7 @@ import Header from './components/header';
 import Page from './page';
 import { randomNumber } from './utils/utils';
 
-const App = () => {
+const App: React.FC = () => {
   const colors = ['#ffd0d2', '#fffdd0', '#d0fffd', '#d0d2ff'];
   const firstGradient = randomNumber(10, 90);
   return (

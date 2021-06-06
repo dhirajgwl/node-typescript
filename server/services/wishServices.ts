@@ -1,3 +1,5 @@
+import { differenceInDays } from 'date-fns';
+import changeDateFormat from '../utils/changeDateFormat';
 import { ErrorType } from '../common/error';
 import getUserInfoServices from './getUserInfoServices';
 import getUserProfiles from './getUserProfileServices';
@@ -29,10 +31,13 @@ const validateUser = async (userName: string, wish: string, maxAge = 10): Promis
   return { data: { success: 'WISH_SEND' } };
 };
 
-const getAge = (birthdays: string): number | string => {
-  const age = Date.now() - new Date(birthdays).getTime();
-  if (Number.isNaN(age)) throw new Error(ErrorType.BIRTHDAY_INVALID);
-  return Math.abs(new Date(age).getUTCFullYear() - 1970);
+const getAge = (birthday: string): number | string => {
+  const newDate = changeDateFormat(birthday, 'yyyy/dd/mm', 'yyyy/mm/dd');
+  const age = differenceInDays(Date.now(), new Date(newDate)) / 365;
+  if (Number.isNaN(age)) {
+    throw new Error(ErrorType.BIRTHDAY_INVALID);
+  }
+  return Math.abs(age);
 };
 
 export default wishServices;

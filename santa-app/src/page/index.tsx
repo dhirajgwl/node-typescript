@@ -18,7 +18,7 @@ const initialState = {
   wish: '',
 };
 
-const Page = () => {
+const Page: React.FC = () => {
   const [{ userName, wish }, setState] = useState<InitialState>(initialState);
   const { message, errorMessage, loading } = useSelector((state: RootState) => state.sendMessageReducer);
   const dispatch = useDispatch();

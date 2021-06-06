@@ -8,7 +8,7 @@ export type TextInputProps = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TextInput = (props: TextInputProps) => {
+const TextInput: React.FC<TextInputProps> = (props: TextInputProps) => {
   return (
     <div className="TextInput">
       <div className="TextInput--label">{props.labelText}</div>

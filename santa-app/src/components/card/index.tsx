@@ -8,7 +8,7 @@ export type CardProps = {
   image?: string;
 };
 
-const Card = (props: CardProps) => {
+const Card: React.FC<CardProps> = (props: CardProps) => {
   return (
     <Grid container justify="center">
       <Grid item xs={6}>

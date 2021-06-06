@@ -10,8 +10,12 @@ const getUserProfiles = async (userUid: string): Promise<UserProfileResponse> =>
   });
   const userProfileList: UserProfile[] = response.data as unknown as Array<UserProfile>;
   const userProfile = userProfileList.find((profile) => profile.userUid === userUid);
-  if (!userProfile) throw new Error(ErrorType.NO_PROFILE);
-  return { data: userProfile };
+  if (!userProfile) {
+    throw new Error(ErrorType.NO_PROFILE);
+  }
+  return {
+    data: userProfile,
+  };
 };
 
 export default getUserProfiles;

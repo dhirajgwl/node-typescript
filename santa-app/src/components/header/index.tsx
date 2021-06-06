@@ -7,7 +7,7 @@ export type HeaderProps = {
   title: string;
 };
 
-const Header = (props: HeaderProps) => {
+const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
       <div className="Header">
