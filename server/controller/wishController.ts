@@ -7,8 +7,9 @@ const wishController = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await wishServices(userName, wish);
     res.send(result);
-  } catch (err) {
+  } catch (err) { 
     const { message } = err;
+    console.error('Error :- ',message);
     res.status(500).send({ message });
   }
 };

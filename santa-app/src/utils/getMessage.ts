@@ -44,6 +44,9 @@ export const getMessage: any = (type: string) => {
       message = 'Hurry my wish send to santa';
       break;
     }
+    default:
+      message = 'System Error';
+      break;
   }
   return message;
 };
