@@ -1,5 +1,5 @@
 {
-  "name": "axa",
+  "name": "axa-test",
   "version": "1.0.0",
   "description": "axa test",
   "main": "server/serve.ts",

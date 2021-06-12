@@ -3,7 +3,7 @@ function* dateGenerator(dateStr: string, oldDateFormat: string): IterableIterato
   const dateChar = 'ymd';
   let index = 0;
   let startIndex = 0;
-  while (index < formatString.length ) {
+  while (index < formatString.length) {
     if (dateChar.indexOf(formatString.charAt(index)) === -1) {
       const dateValue = { key: '', value: '' };
       dateValue.key = formatString.substring(startIndex, index);

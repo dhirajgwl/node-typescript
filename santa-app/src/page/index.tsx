@@ -26,6 +26,7 @@ const Page: React.FC = () => {
     const { value, name } = evt.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
+ 
 
   const handleSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();

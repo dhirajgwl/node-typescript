@@ -22,7 +22,7 @@ const sendEmail = async (emailList: Array<UserProfile>): Promise<void> => {
       if (err) {
         return addMailInQueue(userDetails);
       }
-
+      console.info('Email send', info)
       return info;
     });
   });
