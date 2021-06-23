@@ -1,0 +1,26 @@
+@import '../../color.scss';
+
+.panel {
+  width: 300px;
+  position: absolute;
+  background-color: $white;
+  border-radius: 5px;
+  .Panel--header {
+    padding: 10px;
+    color: $white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .Panel--header--success {
+    background-color: $red;
+  }
+  .Panel--header--error {
+    background-color: $gray;
+  }
+  .Panel--body {
+    padding: 10px 0;
+    .message {
+      padding: 10px;
+    }
+  }
+}

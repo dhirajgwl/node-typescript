@@ -8,7 +8,7 @@ export type TextAreaProps = {
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const TextArea = (props: TextAreaProps) => {
+const TextArea: React.FC<TextAreaProps> = (props: TextAreaProps) => {
   return (
     <div className="TextArea">
       <div className="TextArea--label">{props.labelText}</div>

@@ -1,11 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
-import bodyParser from 'body-parser';
 import router from './router';
 
 const app: express.Express = express();
 app.use(morgan('tiny'));
-app.use(bodyParser());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('dist'));
 app.use(router);
